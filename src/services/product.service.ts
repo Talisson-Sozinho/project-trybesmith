@@ -5,9 +5,14 @@ import Product from '../interfaces/product.interface';
 class ProductService {
   constructor(private model = new models.ProductModel(connection)) { }
 
-  public async createNewProduct(product: Product) : Promise<Product> {
-    const books = await this.model.create(product);
-    return books;
+  public async createNewProduct(newProduct: Product) : Promise<Product> {
+    const productCreated = await this.model.create(newProduct);
+    return productCreated;
+  }
+
+  public async getAllProducts(): Promise<Product[]> {
+    const products = await this.model.getAll();
+    return products;
   }
 }
 

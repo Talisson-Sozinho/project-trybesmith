@@ -16,4 +16,15 @@ export default class UserModel {
     );
     return insertId;
   }
+
+  public async userAuth(userName: string, password: string): Promise<number | undefined> {
+    const result = await this.connection.execute(
+      'SELECT * FROM Trybesmith.Users WHERE username = ? AND password = ?', 
+      [userName, password],
+    );
+    const [rows] = result;
+    const [user] = rows as User[];
+    if (!user) return;
+    return user.id;
+  }
 }

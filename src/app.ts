@@ -8,6 +8,8 @@ app.use(express.json());
 
 app.use('/products', routes.productRoute);
 
+app.use('/users', routes.userRoute);
+
 app.use(errorMiddleware);
 
 export default app;

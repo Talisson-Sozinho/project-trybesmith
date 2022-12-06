@@ -9,7 +9,7 @@ class UserService {
   public async createNewUser(newUser: User) : Promise<string> {
     const userId = await this.model.create(newUser);
 
-    const token = tokenGenerator(userId);
+    const token = tokenGenerator(userId, newUser.username);
 
     return token;
   }

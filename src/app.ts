@@ -10,6 +10,8 @@ app.use('/products', routes.productRoute);
 
 app.use('/users', routes.userRoute);
 
+app.use('/orders', routes.orderRoute);
+
 app.use(errorMiddleware);
 
 export default app;

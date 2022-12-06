@@ -1,7 +1,7 @@
 const BAD_REQUEST = 'BAD_REQUEST';
-const CONFLICT = 'CONFLICT';
 const UNAUTHORIZED = 'UNAUTHORIZED';
 const NOT_FOUND = 'NOT_FOUND';
+const UNPROCESSABLE_ENTITY = 'UNPROCESSABLE_ENTITY';
 
 const errorObjectConstructor = (type: string, message: string): Error => {
   const error = new Error(message);
@@ -17,8 +17,8 @@ const errorCode = (type: string): number => {
       return 401;
     case NOT_FOUND:
       return 404;
-    case CONFLICT:
-      return 409;
+    case UNPROCESSABLE_ENTITY:
+      return 422;
     default:
       return 500;
   }
@@ -26,9 +26,9 @@ const errorCode = (type: string): number => {
 
 export {
   BAD_REQUEST,
-  CONFLICT,
   UNAUTHORIZED,
   NOT_FOUND,
+  UNPROCESSABLE_ENTITY,
   errorObjectConstructor,
   errorCode,
 };

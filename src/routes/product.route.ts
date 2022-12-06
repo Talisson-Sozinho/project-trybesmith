@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import controllers from '../controllers';
+import productsValidate from '../middlewares/productsValidate';
 
 const router = Router();
 
 const productController = new controllers.ProductController();
 
-router.post('/', productController.newProduct);
+router.post('/', productsValidate, productController.newProduct);
 
 router.get('/', productController.allProducts);
 

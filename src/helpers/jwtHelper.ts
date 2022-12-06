@@ -8,10 +8,19 @@ const jwtConfig: SignOptions = {
 };
 
 export const tokenGenerator = (userId: number, username: string) => (
-  jwt.sign({ data: { userId, username } }, secret, jwtConfig)
+  jwt.sign({ user: { userId, username } }, secret, jwtConfig)
 );
 
-export const tokenValidator = (token: string) => jwt.verify(token, secret);
+interface TokenInterface {
+  user: {
+    userId: number;
+    username: string;
+  };
+}
+
+export const tokenValidator = (token: string): TokenInterface => (
+  jwt.verify(token, secret) as TokenInterface
+);
 
 export default {
   tokenGenerator,
